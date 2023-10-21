@@ -1,29 +1,31 @@
-import Head from 'next/head';
-import Header from '@/components/Header';
+import { useRef } from 'react';
+import Link from 'next/link';
+import Page from './Page';
+import HomeSection from '@/components/HomeSection';
 
 export default function Home() {
+	const container = useRef(null);
+
 	return (
-		<div className='bg-light snap-y snap-mandatory overflow-x-hidden overflow-y-scroll font-default text-dark'>
-			<Head>
-				<title>Zita Worm</title>
-				<meta name='description' content='Zita Worm' />
-			</Head>
+		<Page>
+			<div
+				ref={container}
+				className='h-screen bg-light snap-y snap-mandatory overflow-x-hidden overflow-y-scroll font-default text-dark'>
+				{/* ABOUT ME */}
+				<HomeSection index={1} container={container} />
 
-			<main>
-				<Header />
+				{/* EXPERIENCE */}
+				<HomeSection index={2} container={container} />
 
-				<section className='snap-center'>{/* HERO */}</section>
+				{/* SKILLS */}
+				<HomeSection index={3} container={container} />
 
-				<section className='snap-center'>{/* ABOUT */}</section>
+				{/* PROJECTS */}
+				<HomeSection index={4} container={container} />
 
-				<section className='snap-center'>{/* EXPERIENCE */}</section>
-
-				<section className='snap-center'>{/* SKILLS */}</section>
-
-				<section className='snap-center'>{/* PROJECTS */}</section>
-
-				<section className='snap-center'>{/* CONTACT */}</section>
-			</main>
-		</div>
+				{/* CONTACT */}
+				<HomeSection index={5} container={container} />
+			</div>
+		</Page>
 	);
 }

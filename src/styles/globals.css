@@ -3,19 +3,27 @@
 @tailwind utilities;
 
 @font-face {
-	font-family: 'Antonia';
-	src: url('./fonts/Antonia-Light.ttf') format('truetype'),
-		url('./fonts/Antonia-Light.woff') format('woff');
-	font-weight: 300;
-	font-style: normal;
-	font-display: swap;
+  font-family: "Antonia";
+  src:
+    url("./fonts/Antonia-Light.ttf") format("truetype"),
+    url("./fonts/Antonia-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-	font-family: 'Clarika';
-	src: url('./fonts/Clarika-regular.otf') format('opentype'),
-		url('./fonts/Clarika-regular.woff2') format('woff2');
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
+  font-family: "Clarika";
+  src:
+    url("./fonts/Clarika-regular.otf") format("opentype"),
+    url("./fonts/Clarika-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer components {
+  .pageContainer {
+    @apply h-screen snap-y snap-mandatory overflow-x-hidden overflow-y-scroll bg-light font-default text-dark;
+  }
 }

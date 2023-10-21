@@ -2,14 +2,16 @@ import React from "react";
 import Image from "next/image";
 import imgSrc from "@public/vercel.svg";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { SectionType } from "../../types";
+import { useRouter } from "next/router";
 
 type Props = {
-  index: number;
   container: React.MutableRefObject<null>;
-  title: string;
+  section: SectionType;
 };
 
-function HomeSection({ index, container, title }: Props) {
+function HomeSection({ container, section }: Props) {
+  const router = useRouter();
   const target = React.useRef(null);
   const { scrollYProgress } = useScroll({
     container,
@@ -21,22 +23,24 @@ function HomeSection({ index, container, title }: Props) {
 
   return (
     <section
-      key={"section-" + index}
+      key={section.title}
       className="relative flex h-[70vh] snap-center items-center justify-center md:justify-end md:pr-16 lg:h-[80vh] xl:pr-32 2xl:pr-60"
     >
       <motion.div
+        layoutId={section.title}
         ref={target}
-        className="relative flex aspect-[3/4] h-4/5 items-center justify-center bg-dark lg:h-3/4"
+        className="relative flex aspect-[3/4] h-4/5 cursor-pointer items-center justify-center bg-dark lg:h-3/4"
         style={{ rotate }}
+        onClick={() => router.push(section.link_url)}
       >
         <Image
           src={imgSrc}
           alt="Picture of the author"
-          className="blur-sm md:blur-none"
+          className="h-full w-full object-contain blur-sm md:blur-none"
         />
-        <div className="absolute inset-0 bg-dark opacity-30"></div>
+        <div className="absolute inset-0 bg-dark opacity-30 md:hidden"></div>
         <h2 className="absolute left-1/2 top-1/2 flex -translate-x-1/2 text-3xl text-light md:hidden">
-          {title}
+          {section.title}
         </h2>
       </motion.div>
     </section>

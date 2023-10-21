@@ -1,29 +1,55 @@
-import Head from 'next/head';
-import Header from '@/components/Header';
+import { useRef } from "react";
+import Link from "next/link";
+import Page from "./Page";
+import HomeSection from "@/components/HomeSection";
+import { useScroll, useTransform, motion } from "framer-motion";
+import HomeTitle from "@/components/HomeTitle";
 
 export default function Home() {
-	return (
-		<div className='bg-light snap-y snap-mandatory overflow-x-hidden overflow-y-scroll font-default text-dark'>
-			<Head>
-				<title>Zita Worm</title>
-				<meta name='description' content='Zita Worm' />
-			</Head>
+  const container = useRef(null);
 
-			<main>
-				<Header />
+  const { scrollYProgress } = useScroll({
+    container,
+    offset: ["-100%", "100%"],
+  });
 
-				<section className='snap-center'>{/* HERO */}</section>
+  const yPos = useTransform(scrollYProgress, [0, 1], ["105%", "-105%"]);
 
-				<section className='snap-center'>{/* ABOUT */}</section>
+  return (
+    <Page>
+      <div
+        ref={container}
+        className="h-screen snap-y snap-mandatory overflow-x-hidden overflow-y-scroll bg-light py-24 font-default text-dark"
+      >
+        {/* ABOUT ME */}
+        <HomeSection index={1} container={container} title="About me" />
 
-				<section className='snap-center'>{/* EXPERIENCE */}</section>
+        {/* EXPERIENCE */}
+        <HomeSection index={2} container={container} title="Experience" />
 
-				<section className='snap-center'>{/* SKILLS */}</section>
+        {/* SKILLS */}
+        <HomeSection index={3} container={container} title="Skills" />
 
-				<section className='snap-center'>{/* PROJECTS */}</section>
+        {/* PROJECTS */}
+        <HomeSection index={4} container={container} title="Projects" />
 
-				<section className='snap-center'>{/* CONTACT */}</section>
-			</main>
-		</div>
-	);
+        {/* CONTACT */}
+        <HomeSection index={5} container={container} title="Contact" />
+
+        <div className="fixed left-16 top-1/2 hidden h-[3.75rem] overflow-hidden md:block lg:h-24 xl:left-32 2xl:left-60">
+          <motion.div className="flex flex-col" style={{ translateY: yPos }}>
+            <HomeTitle title="About me" link="/about" />
+
+            <HomeTitle title="Experience" link="/experience" />
+
+            <HomeTitle title="Skills" link="/skills" />
+
+            <HomeTitle title="Projects" link="/projects" />
+
+            <HomeTitle title="Contact" link="/contact" />
+          </motion.div>
+        </div>
+      </div>
+    </Page>
+  );
 }

@@ -21,10 +21,10 @@ function HomeSection({ index, container }: Props) {
 	return (
 		<section
 			key={'section-' + index}
-			className='relative h-screen flex justify-end items-center pr-60 snap-start'>
+			className='relative h-[80vh] flex justify-end items-center pr-60 snap-center'>
 			<motion.div
 				ref={target}
-				className='h-3/5 aspect-[3/4] bg-dark flex justify-center items-center'
+				className='h-3/4 aspect-[3/4] bg-dark flex justify-center items-center'
 				style={{ rotate }}>
 				<Image src={imgSrc} alt='Picture of the author' />
 			</motion.div>

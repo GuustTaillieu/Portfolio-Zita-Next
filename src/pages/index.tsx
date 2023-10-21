@@ -1,9 +1,32 @@
 import { useRef } from "react";
-import Link from "next/link";
 import Page from "./Page";
 import HomeSection from "@/components/HomeSection";
 import { useScroll, useTransform, motion } from "framer-motion";
 import HomeTitle from "@/components/HomeTitle";
+import { SectionType } from "../../types";
+
+const sections: SectionType[] = [
+  {
+    title: "About me",
+    link_url: "/about",
+  },
+  {
+    title: "Experience",
+    link_url: "/experience",
+  },
+  {
+    title: "Skills",
+    link_url: "/skills",
+  },
+  {
+    title: "Projects",
+    link_url: "/projects",
+  },
+  {
+    title: "Contact",
+    link_url: "/contact",
+  },
+];
 
 export default function Home() {
   const container = useRef(null);
@@ -17,38 +40,27 @@ export default function Home() {
 
   return (
     <Page>
-      <div
-        ref={container}
-        className="h-screen snap-y snap-mandatory overflow-x-hidden overflow-y-scroll bg-light py-24 font-default text-dark"
-      >
-        {/* ABOUT ME */}
-        <HomeSection index={1} container={container} title="About me" />
+      <div ref={container} className="pageContainer py-24">
+        {sections?.map((section) => (
+          <HomeSection
+            key={section.title}
+            container={container}
+            section={section}
+          />
+        ))}
 
-        {/* EXPERIENCE */}
-        <HomeSection index={2} container={container} title="Experience" />
-
-        {/* SKILLS */}
-        <HomeSection index={3} container={container} title="Skills" />
-
-        {/* PROJECTS */}
-        <HomeSection index={4} container={container} title="Projects" />
-
-        {/* CONTACT */}
-        <HomeSection index={5} container={container} title="Contact" />
-
-        <div className="fixed left-16 top-1/2 hidden h-[3.75rem] overflow-hidden md:block lg:h-24 xl:left-32 2xl:left-60">
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0, transition: { duration: 0.1 } }}
+          exit={{ opacity: 0, x: -100, transition: { duration: 0.2 } }}
+          className="fixed left-16 top-2/3 hidden h-[3.75rem] overflow-hidden md:block lg:h-24 xl:left-32 2xl:left-60"
+        >
           <motion.div className="flex flex-col" style={{ translateY: yPos }}>
-            <HomeTitle title="About me" link="/about" />
-
-            <HomeTitle title="Experience" link="/experience" />
-
-            <HomeTitle title="Skills" link="/skills" />
-
-            <HomeTitle title="Projects" link="/projects" />
-
-            <HomeTitle title="Contact" link="/contact" />
+            {sections?.map((section) => (
+              <HomeTitle key={section.title} section={section} />
+            ))}
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </Page>
   );

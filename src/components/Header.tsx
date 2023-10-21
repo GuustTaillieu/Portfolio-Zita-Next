@@ -18,7 +18,6 @@ const Header = (props: Props) => {
     <motion.header
       className="fixed top-0 z-50 mx-auto grid w-full grid-cols-2 items-center bg-light px-4 text-center text-sm shadow-md sm:text-lg md:grid-cols-3 md:px-20 lg:bg-transparent lg:shadow-none"
       layoutId="navigation"
-      transition={{ duration: 1, ease: "easeInOut", delay: 1 }}
     >
       <div className="hidden justify-start md:flex">
         <motion.div

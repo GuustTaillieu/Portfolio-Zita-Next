@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { SocialIcon } from "react-social-icons";
 import config from "../../tailwind.config";
+import ROUTES from "@/routes";
 
 const socials = [
   "https://github.com/GuustTaillieu/",
@@ -52,7 +53,7 @@ const Header = (props: Props) => {
         className="flex justify-start md:justify-center"
       >
         <h1 className="p-4 font-secondary font-semibold uppercase text-dark sm:text-nav">
-          <Link href="/">Zita Worm</Link>
+          <Link href={ROUTES.HOME}>Zita Worm</Link>
         </h1>
       </motion.div>
       <motion.div

@@ -4,27 +4,28 @@ import HomeSection from "@/components/HomeSection";
 import { useScroll, useTransform, motion } from "framer-motion";
 import HomeTitle from "@/components/HomeTitle";
 import { SectionType } from "../../types";
+import ROUTES from "@/routes";
 
 const sections: SectionType[] = [
   {
     title: "About me",
-    link_url: "/about",
+    link_url: ROUTES.ABOUT,
   },
   {
     title: "Experience",
-    link_url: "/experience",
+    link_url: ROUTES.EXPERIENCE,
   },
   {
     title: "Skills",
-    link_url: "/skills",
+    link_url: ROUTES.SKILLS,
   },
   {
     title: "Projects",
-    link_url: "/projects",
+    link_url: ROUTES.PROJECTS,
   },
   {
     title: "Contact",
-    link_url: "/contact",
+    link_url: ROUTES.CONTACT,
   },
 ];
 

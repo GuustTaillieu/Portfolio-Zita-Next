@@ -4,10 +4,11 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import imgSrc from "@public/vercel.svg";
 import { useRouter } from "next/router";
+import ROUTES from "@/routes";
 
 type Props = {};
 
-function experience({}: Props) {
+function Experience({}: Props) {
   const router = useRouter();
 
   return (
@@ -17,7 +18,7 @@ function experience({}: Props) {
           <motion.div
             layoutId="Experience"
             className="relative flex aspect-[3/4] h-screen items-center justify-center bg-dark"
-            onClick={() => router.push("/")}
+            onClick={() => router.push(ROUTES.HOME)}
           >
             <Image
               src={imgSrc}
@@ -40,4 +41,4 @@ function experience({}: Props) {
   );
 }
 
-export default experience;
+export default Experience;

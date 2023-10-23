@@ -1,19 +1,21 @@
-import Header from '@/components/Header';
-import Head from 'next/head';
+import Header from "@/components/Header";
+import Head from "next/head";
 
 type Props = {
-	children: React.ReactNode;
+  children: React.ReactNode;
+  headerBg?: boolean;
+  headerInverted?: boolean;
 };
 
-export default function Page({ children }: Props) {
-	return (
-		<>
-			<Head>
-				<title>Zita Worm</title>
-				<meta name='description' content='Zita Worm' />
-			</Head>
-			<Header />
-			<main>{children}</main>
-		</>
-	);
+export default function Page({ children, headerBg, headerInverted }: Props) {
+  return (
+    <>
+      <Head>
+        <title>Zita Worm</title>
+        <meta name="description" content="Zita Worm" />
+      </Head>
+      <Header background={headerBg} invert={headerInverted} />
+      <main>{children}</main>
+    </>
+  );
 }

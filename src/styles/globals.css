@@ -24,6 +24,10 @@
 
 @layer components {
   .pageContainer {
-    @apply h-screen snap-y snap-mandatory overflow-x-hidden overflow-y-scroll bg-light font-default text-dark;
+    @apply h-screen overflow-x-hidden overflow-y-scroll bg-light font-default text-dark;
+  }
+
+  .sectionTitle {
+    @apply text-5xl font-bold tracking-[0.2rem];
   }
 }

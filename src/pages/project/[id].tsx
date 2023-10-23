@@ -4,9 +4,10 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 import { Variants, motion, useScroll, useTransform } from "framer-motion";
-import ROUTES, { projects } from "@/routes";
+import ROUTES from "@/routes";
 import BackButton from "@/components/BackButton";
 import Page from "../Page";
+import { projects } from "@/data";
 
 const variants: Variants = {
   initial: { marginRight: 100, scale: 3, originX: "100%" },

@@ -9,17 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@loadable/component": "^5.15.3",
     "framer-motion": "^10.16.4",
     "next": "13.5.5",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^4.11.0",
-    "react-social-icons": "^6.4.0"
+    "react-social-icons": "^6.4.0",
+    "react-vertical-timeline-component": "^3.6.0"
   },
   "devDependencies": {
+    "@types/loadable__component": "^5.13.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-vertical-timeline-component": "^3.3.5",
     "autoprefixer": "^10",
     "eslint": "^8",
     "eslint-config-next": "13.5.5",

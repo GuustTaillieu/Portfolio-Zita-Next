@@ -2,7 +2,7 @@ import React, { SyntheticEvent, useEffect } from "react";
 import Page from "./Page";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import TrackImage from "@/components/TrackImage";
-import { projects } from "@/routes";
+import { projects } from "@/data";
 
 export const projectImageVariant = {
   initial: { opacity: 0 },

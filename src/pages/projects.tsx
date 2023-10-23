@@ -2,7 +2,10 @@ import React, { SyntheticEvent, useEffect } from "react";
 import Page from "./Page";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import TrackImage from "@/components/TrackImage";
-import { projects } from "@/routes";
+import { projects } from "@/data";
+import BackButton from "@/components/BackButton";
+import { useRouter } from "next/router";
+import Image from "next/image";
 
 export const projectImageVariant = {
   initial: { opacity: 0 },
@@ -17,6 +20,7 @@ const DRAGSPEED = 1.3;
 type Props = {};
 
 const Projects = ({}: Props) => {
+  const router = useRouter();
   const track = React.useRef<HTMLDivElement>(null);
   const [trackHalf, setTrackHalf] = React.useState(0);
   const [isMobile, setIsMobile] = React.useState(false);
@@ -51,9 +55,23 @@ const Projects = ({}: Props) => {
     <Page headerInverted={true}>
       <div
         ref={track}
-        className="flex h-screen w-screen flex-col items-center justify-start overflow-y-scroll bg-dark pt-24 font-default text-light md:justify-center md:overflow-hidden md:pt-0"
+        className="relative flex h-screen w-screen flex-col items-center justify-start overflow-y-scroll bg-dark pt-24 font-default text-light md:justify-center md:overflow-hidden md:pt-0"
       >
-        <h2 className="sectionTitle mb-10 md:mb-4">Projects</h2>
+        <motion.div
+          layoutId="Projects"
+          transition={{ duration: 0.5 }}
+          className="fixed flex h-screen w-full items-center justify-center bg-dark"
+        >
+          <Image
+            src="https://picsum.photos/1080/720"
+            width={1080}
+            height={720}
+            alt="Picture of the author"
+            className="h-full w-full bg-dark object-cover opacity-5 blur-sm"
+          />
+        </motion.div>
+
+        <h2 className="sectionTitle z-50 mb-10 md:mb-4">Projects</h2>
         <h3 className="mb-8 hidden font-secondary text-2xl uppercase tracking-[10px] opacity-40 md:flex">
           Drag to scroll
         </h3>
@@ -78,6 +96,10 @@ const Projects = ({}: Props) => {
           </motion.div>
         </div>
       </div>
+      <BackButton
+        className="bg-light text-dark"
+        callback={() => router.push("/")}
+      />
     </Page>
   );
 };

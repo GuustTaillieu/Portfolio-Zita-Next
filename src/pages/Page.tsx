@@ -15,7 +15,7 @@ export default function Page({ children, headerBg, headerInverted }: Props) {
         <meta name="description" content="Zita Worm" />
       </Head>
       <Header background={headerBg} invert={headerInverted} />
-      <main>{children}</main>
+      <main className="relative">{children}</main>
     </>
   );
 }

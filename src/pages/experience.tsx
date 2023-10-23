@@ -14,6 +14,7 @@ import "react-vertical-timeline-component/style.min.css";
 import { timeline } from "@/data";
 import config from "../../tailwind.config";
 import { IconBaseProps } from "react-icons";
+import BackButton from "@/components/BackButton";
 
 const dark = (((config.theme?.extend?.colors as any)?.dark as string) ??
   "#000") as string;
@@ -68,6 +69,9 @@ function Experience({}: Props) {
                         color: dark,
                         fontSize: "1.5rem",
                       }}
+                      intersectionObserverProps={{
+                        triggerOnce: false,
+                      }}
                     >
                       <h3 className="font-secondary text-2xl font-bold">
                         {item.role}
@@ -89,6 +93,8 @@ function Experience({}: Props) {
             </VerticalTimeline>
           </div>
         </div>
+
+        <BackButton className="bg-light text-dark" />
       </div>
     </Page>
   );

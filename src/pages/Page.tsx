@@ -3,16 +3,18 @@ import Head from "next/head";
 
 type Props = {
   children: React.ReactNode;
+  headerBg?: boolean;
+  headerInverted?: boolean;
 };
 
-export default function Page({ children }: Props) {
+export default function Page({ children, headerBg, headerInverted }: Props) {
   return (
     <>
       <Head>
         <title>Zita Worm</title>
         <meta name="description" content="Zita Worm" />
       </Head>
-      <Header />
+      <Header background={headerBg} invert={headerInverted} />
       <main>{children}</main>
     </>
   );

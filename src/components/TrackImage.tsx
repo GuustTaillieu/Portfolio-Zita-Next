@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { motion } from "framer-motion";
 import ROUTES from "@/routes";
+import { projectImageVariant } from "@/pages/projects";
 
 type Props = {
   project: {
@@ -19,14 +20,13 @@ const TrackImage = ({ project }: Props) => {
 
   return (
     <motion.div
-      className="aspect-[3/4] h-full bg-gray-400 shadow-xl"
+      key={project.id}
+      className="aspect-[5/3] w-full overflow-hidden rounded-md bg-gray-400 shadow-lg md:aspect-[3/4] md:h-full"
       layoutId={project.title}
       onMouseDown={() => setClicking(true)}
       onMouseMove={() => setClicking(false)}
       onMouseUp={() => clicking && router.push(ROUTES.PROJECT(project.id))}
-      key={project.id}
-      initial={{ opacity: 0, x: 100 }}
-      animate={{ opacity: 1, x: 0 }}
+      variants={projectImageVariant}
       transition={{ duration: 0.5 }}
     >
       <Image
@@ -34,7 +34,7 @@ const TrackImage = ({ project }: Props) => {
         src={project.image}
         width={1920}
         height={1080}
-        alt="Picture of the author"
+        alt="Project image"
         className="h-full w-full object-cover"
       />
     </motion.div>

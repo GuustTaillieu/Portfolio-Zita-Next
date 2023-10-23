@@ -41,7 +41,10 @@ export default function Home() {
 
   return (
     <Page>
-      <div ref={container} className="pageContainer py-24">
+      <div
+        ref={container}
+        className="pageContainer snap-y snap-mandatory py-24"
+      >
         {sections?.map((section) => (
           <HomeSection
             key={section.title}

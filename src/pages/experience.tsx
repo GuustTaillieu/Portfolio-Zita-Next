@@ -13,6 +13,7 @@ import { timeline } from "@/data";
 import config from "../../tailwind.config";
 import { IconBaseProps } from "react-icons";
 import BackButton from "@/components/BackButton";
+import { useRouter } from "next/router";
 
 const dark = (((config.theme?.extend?.colors as any)?.dark as string) ??
   "#000") as string;
@@ -23,6 +24,8 @@ const light = (((config.theme?.extend?.colors as any)?.light as string) ??
 type Props = {};
 
 function Experience({}: Props) {
+  const router = useRouter();
+
   return (
     <Page headerInverted>
       <div className="pageContainer relative">
@@ -90,7 +93,10 @@ function Experience({}: Props) {
           </div>
         </div>
 
-        <BackButton className="bg-light text-dark" />
+        <BackButton
+          className="bg-light text-dark"
+          callback={() => router.push("/?section=experience")}
+        />
       </div>
     </Page>
   );

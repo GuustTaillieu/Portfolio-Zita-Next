@@ -24,6 +24,7 @@ function HomeSection({ container, section }: Props) {
   return (
     <section
       key={section.title}
+      id={section.title.toId()}
       className="relative flex h-[70vh] snap-center items-center justify-center md:justify-end md:pr-16 lg:h-[80vh] xl:pr-32 2xl:pr-60"
     >
       <motion.div

@@ -4,8 +4,8 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import TrackImage from "@/components/TrackImage";
 import { projects } from "@/data";
 import BackButton from "@/components/BackButton";
-import { useRouter } from "next/router";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export const projectImageVariant = {
   initial: { opacity: 0 },
@@ -98,7 +98,7 @@ const Projects = ({}: Props) => {
       </div>
       <BackButton
         className="bg-light text-dark"
-        callback={() => router.push("/")}
+        callback={() => router.push("/?section=projects")}
       />
     </Page>
   );

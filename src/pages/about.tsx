@@ -3,8 +3,8 @@ import React from "react";
 import imgSrc from "@public/vercel.svg";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import ROUTES from "@/routes";
+import { useRouter } from "next/router";
 
 type Props = {};
 
@@ -18,7 +18,7 @@ function AboutMe({}: Props) {
           <motion.div
             layoutId="About me"
             className="relative flex aspect-[3/4] h-screen cursor-pointer items-center justify-center bg-dark"
-            onClick={() => router.push(ROUTES.HOME)}
+            onClick={() => router.push(ROUTES.HOME + "?section=about")}
           >
             <Image
               src={imgSrc}

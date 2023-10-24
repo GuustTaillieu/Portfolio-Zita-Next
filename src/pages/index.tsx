@@ -1,10 +1,11 @@
-import { useRef } from "react";
+import React from "react";
 import Page from "./Page";
 import HomeSection from "@/components/HomeSection";
 import { useScroll, useTransform, motion } from "framer-motion";
 import HomeTitle from "@/components/HomeTitle";
 import { SectionType } from "../../types";
 import ROUTES from "@/routes";
+import { useRouter } from "next/router";
 
 const sections: SectionType[] = [
   {
@@ -30,7 +31,18 @@ const sections: SectionType[] = [
 ];
 
 export default function Home() {
-  const container = useRef(null);
+  const container = React.useRef(null);
+  const { query } = useRouter();
+
+  React.useEffect(() => {
+    const section = query.section as string;
+    if (section) {
+      const el = document.getElementById(section.toId());
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [query]);
 
   const { scrollYProgress } = useScroll({
     container,

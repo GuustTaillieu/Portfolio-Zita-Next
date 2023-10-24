@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { SocialIcon } from "react-social-icons";
@@ -25,7 +25,7 @@ const Header = ({ background, invert }: Props) => {
     <motion.header
       layoutId="navigation"
       className={
-        `header:px-20 fixed top-0 z-50 mx-auto grid w-full grid-cols-2 items-center px-4 text-center text-lg text-dark sm:text-lg md:grid-cols-3` +
+        `fixed top-0 z-50 mx-auto grid w-full grid-cols-2 items-center px-4 text-center text-lg text-dark sm:text-lg md:grid-cols-3 header:px-20` +
         (background ? " bg-light shadow-md" : "")
       }
       style={invert ? { filter: "invert(1)" } : {}}

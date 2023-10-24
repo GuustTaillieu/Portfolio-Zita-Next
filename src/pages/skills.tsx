@@ -3,12 +3,15 @@ import Page from "./Page";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import BackButton from "@/components/BackButton";
-import { skills } from "@/data";
+import { info, skills } from "@/data";
 import Skill from "@/components/Skill";
+import { useRouter } from "next/router";
 
 type Props = {};
 
 const Skills = (props: Props) => {
+  const router = useRouter();
+
   return (
     <Page headerInverted>
       <div className="pageContainer relative">
@@ -18,7 +21,7 @@ const Skills = (props: Props) => {
           className="fixed flex h-screen w-full items-center justify-center bg-dark"
         >
           <Image
-            src="https://picsum.photos/1080/720"
+            src={info.backgroundImage}
             width={1080}
             height={720}
             alt="Picture of the author"
@@ -43,7 +46,10 @@ const Skills = (props: Props) => {
             ))}
           </div>
         </div>
-        <BackButton className="bg-light text-dark" />
+        <BackButton
+          className="bg-light text-dark"
+          callback={() => router.push("/?section=skills")}
+        />
       </div>
     </Page>
   );

@@ -2,10 +2,10 @@ import React, { SyntheticEvent, useEffect } from "react";
 import Page from "./Page";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import TrackImage from "@/components/TrackImage";
-import { projects } from "@/data";
+import { info, projects } from "@/data";
 import BackButton from "@/components/BackButton";
-import { useRouter } from "next/router";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export const projectImageVariant = {
   initial: { opacity: 0 },
@@ -63,7 +63,7 @@ const Projects = ({}: Props) => {
           className="fixed flex h-screen w-full items-center justify-center bg-dark"
         >
           <Image
-            src="https://picsum.photos/1080/720"
+            src={info.backgroundImage}
             width={1080}
             height={720}
             alt="Picture of the author"
@@ -98,7 +98,7 @@ const Projects = ({}: Props) => {
       </div>
       <BackButton
         className="bg-light text-dark"
-        callback={() => router.push("/")}
+        callback={() => router.push("/?section=projects")}
       />
     </Page>
   );

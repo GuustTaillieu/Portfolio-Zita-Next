@@ -3,6 +3,8 @@ import Page from "./Page";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import BackButton from "@/components/BackButton";
+import { skills } from "@/data";
+import Skill from "@/components/Skill";
 
 type Props = {};
 
@@ -20,11 +22,27 @@ const Skills = (props: Props) => {
             width={1080}
             height={720}
             alt="Picture of the author"
-            className="h-full w-full bg-dark object-cover opacity-10 blur-sm"
+            className="h-full w-full bg-dark object-cover opacity-5 blur-md"
           />
         </motion.div>
 
-        <div className="flex h-full items-center pt-24">Skills</div>
+        <div className="mx-auto flex h-full max-w-4xl flex-col items-center pt-24 text-center text-light">
+          <h2 className="sectionTitle z-50 mb-10 md:mb-4">Skills</h2>
+          <h3 className="mb-8 hidden font-secondary text-2xl uppercase tracking-[10px] opacity-40 md:flex">
+            Hover to see more
+          </h3>
+          <div className="grid grid-cols-2 gap-8 py-8 sm:grid-cols-3 md:grid-cols-4">
+            {skills.map((skill, index) => (
+              <Skill
+                key={index}
+                data={skill}
+                direction={
+                  index >= Math.floor(skills.length / 2) ? "right" : "left"
+                }
+              />
+            ))}
+          </div>
+        </div>
         <BackButton className="bg-light text-dark" />
       </div>
     </Page>

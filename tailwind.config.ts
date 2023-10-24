@@ -12,6 +12,8 @@ const config: Config = {
       colors: {
         dark: "#181818",
         light: "#eeeeee",
+        primary: "#88e6e8",
+        primaryDark: "#2b7a78",
       },
       fontFamily: {
         default: ["Antonia", "serif"],

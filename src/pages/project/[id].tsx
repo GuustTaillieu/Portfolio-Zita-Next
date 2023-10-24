@@ -103,7 +103,7 @@ export default function Project({ project }: Props) {
               ))}
           </motion.div>
           <BackButton
-            className="bg-light text-dark"
+            className="bg-primaryDark text-dark"
             callback={() => router.push(ROUTES.PROJECTS)}
           />
         </motion.div>

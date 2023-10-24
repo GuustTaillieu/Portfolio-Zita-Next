@@ -104,7 +104,7 @@ function Experience({}: Props) {
         )}
 
         <BackButton
-          className="bg-light text-dark"
+          className="bg-primaryDark text-dark"
           callback={() => router.push("/?section=experience")}
         />
       </div>

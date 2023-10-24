@@ -97,7 +97,7 @@ const Projects = ({}: Props) => {
         </div>
       </div>
       <BackButton
-        className="bg-light text-dark"
+        className="bg-primaryDark text-dark"
         callback={() => router.push("/?section=projects")}
       />
     </Page>

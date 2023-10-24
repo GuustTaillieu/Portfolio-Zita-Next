@@ -3,7 +3,7 @@ import Page from "./Page";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import BackButton from "@/components/BackButton";
-import { skills } from "@/data";
+import { info, skills } from "@/data";
 import Skill from "@/components/Skill";
 import { useRouter } from "next/router";
 
@@ -21,7 +21,7 @@ const Skills = (props: Props) => {
           className="fixed flex h-screen w-full items-center justify-center bg-dark"
         >
           <Image
-            src="https://picsum.photos/1080/720"
+            src={info.backgroundImage}
             width={1080}
             height={720}
             alt="Picture of the author"

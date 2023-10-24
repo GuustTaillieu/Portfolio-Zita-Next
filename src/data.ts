@@ -1,3 +1,5 @@
+import bg_image from "@public/images/backgroundImage.webp";
+
 export const projects = [
   {
     id: "1",
@@ -137,3 +139,10 @@ export const skills = [
     percentage: 80,
   },
 ];
+
+export const info = {
+  backgroundImage: bg_image,
+  phoneNumber: "+32 123 45 67 89",
+  email: "email.email@email.com",
+  address: "Street 123, 1234 City",
+};

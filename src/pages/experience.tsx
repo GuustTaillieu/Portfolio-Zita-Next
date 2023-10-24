@@ -9,7 +9,7 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
-import { timeline } from "@/data";
+import { info, timeline } from "@/data";
 import config from "../../tailwind.config";
 import { IconBaseProps } from "react-icons";
 import BackButton from "@/components/BackButton";
@@ -25,6 +25,14 @@ type Props = {};
 
 function Experience({}: Props) {
   const router = useRouter();
+  const [show, setShow] = React.useState(false);
+
+  React.useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShow(true);
+    }, 600);
+    () => clearTimeout(timeout);
+  }, []);
 
   return (
     <Page headerInverted>
@@ -35,7 +43,7 @@ function Experience({}: Props) {
           className="fixed flex h-screen w-full items-center justify-center bg-dark"
         >
           <Image
-            src="https://picsum.photos/1080/720"
+            src={info.backgroundImage}
             width={1080}
             height={720}
             alt="Picture of the author"
@@ -43,55 +51,57 @@ function Experience({}: Props) {
           />
         </motion.div>
 
-        <div className="flex h-full items-end pt-24">
-          <div className="h-full min-h-fit w-full">
-            <VerticalTimeline lineColor="#cccccc">
-              {timeline
-                .sort((a, b) => a.date.end.localeCompare(b.date.end))
-                .map((item, index) => (
-                  <React.Fragment key={index}>
-                    <VerticalTimelineElement
-                      contentStyle={{
-                        background: light,
-                        color: dark,
-                        boxShadow: "none",
-                        border: "none",
-                        textAlign: "left",
-                        padding: "1.25rem 2rem",
-                      }}
-                      contentArrowStyle={{
-                        borderRight: "0.4rem solid " + light,
-                      }}
-                      icon={<GrabIcon nameIcon={item.icon} />}
-                      iconStyle={{
-                        background: light,
-                        color: dark,
-                        fontSize: "1.5rem",
-                      }}
-                      intersectionObserverProps={{
-                        triggerOnce: false,
-                      }}
-                    >
-                      <h3 className="font-secondary text-2xl font-bold">
-                        {item.role}
-                      </h3>
-                      <p className="!-mt-1 font-secondary text-xl uppercase italic">
-                        {item.company}
-                      </p>
-                      <p className="!mt-4 flex items-center gap-2 font-secondary">
-                        <FaMapPin /> {item.location}
-                      </p>
-                      <p className="!mt-1 flex items-center gap-2 font-secondary">
-                        <FaCalendarAlt /> {item.date.start}
-                        <span className="font-default"> - </span>
-                        {item.date.end}
-                      </p>
-                    </VerticalTimelineElement>
-                  </React.Fragment>
-                ))}
-            </VerticalTimeline>
+        {show && (
+          <div className="flex h-full items-end pt-24">
+            <div className="h-full min-h-fit w-full">
+              <VerticalTimeline lineColor="#cccccc">
+                {timeline
+                  .sort((a, b) => a.date.end.localeCompare(b.date.end))
+                  .map((item, index) => (
+                    <React.Fragment key={index}>
+                      <VerticalTimelineElement
+                        contentStyle={{
+                          background: light,
+                          color: dark,
+                          boxShadow: "none",
+                          border: "none",
+                          textAlign: "left",
+                          padding: "1.25rem 2rem",
+                        }}
+                        contentArrowStyle={{
+                          borderRight: "0.4rem solid " + light,
+                        }}
+                        icon={<GrabIcon nameIcon={item.icon} />}
+                        iconStyle={{
+                          background: light,
+                          color: dark,
+                          fontSize: "1.5rem",
+                        }}
+                        intersectionObserverProps={{
+                          triggerOnce: false,
+                        }}
+                      >
+                        <h3 className="font-secondary text-2xl font-bold">
+                          {item.role}
+                        </h3>
+                        <p className="!-mt-1 font-secondary text-xl uppercase italic">
+                          {item.company}
+                        </p>
+                        <p className="!mt-4 flex items-center gap-2 font-secondary">
+                          <FaMapPin /> {item.location}
+                        </p>
+                        <p className="!mt-1 flex items-center gap-2 font-secondary">
+                          <FaCalendarAlt /> {item.date.start}
+                          <span className="font-default"> - </span>
+                          {item.date.end}
+                        </p>
+                      </VerticalTimelineElement>
+                    </React.Fragment>
+                  ))}
+              </VerticalTimeline>
+            </div>
           </div>
-        </div>
+        )}
 
         <BackButton
           className="bg-light text-dark"

@@ -3,8 +3,6 @@ import loadable from "@loadable/component";
 import Page from "./Page";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import ROUTES from "@/routes";
 import { FaCalendarAlt, FaMapPin } from "react-icons/fa";
 import {
   VerticalTimeline,
@@ -25,8 +23,6 @@ const light = (((config.theme?.extend?.colors as any)?.light as string) ??
 type Props = {};
 
 function Experience({}: Props) {
-  const router = useRouter();
-
   return (
     <Page headerInverted>
       <div className="pageContainer relative">

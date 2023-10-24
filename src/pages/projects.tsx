@@ -76,7 +76,7 @@ const Projects = ({}: Props) => {
           Drag to scroll
         </h3>
 
-        <div className="w-4/5 md:h-1/2 md:w-[unset] md:translate-x-1/3">
+        <div className="max-md:w-4/5 md:h-1/2 md:translate-x-1/3">
           <motion.div
             className="mb-8 flex h-full flex-col space-y-8 md:mb-0 md:flex-row md:space-x-8 md:space-y-0"
             drag={isMobile ? false : "x"}

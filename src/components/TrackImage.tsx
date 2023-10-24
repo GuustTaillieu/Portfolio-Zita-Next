@@ -21,7 +21,7 @@ const TrackImage = ({ project }: Props) => {
   return (
     <motion.div
       key={project.id}
-      className="aspect-[5/3] w-full overflow-hidden rounded-md bg-gray-400 shadow-lg md:aspect-[3/4] md:h-full"
+      className="z-50 aspect-[5/3] w-full overflow-hidden rounded-md bg-gray-400 shadow-lg md:aspect-[3/4] md:h-full"
       layoutId={project.title}
       onMouseDown={() => setClicking(true)}
       onMouseMove={() => setClicking(false)}
@@ -32,8 +32,8 @@ const TrackImage = ({ project }: Props) => {
       <Image
         draggable={false}
         src={project.image}
-        width={1920}
-        height={1080}
+        width={100}
+        height={200}
         alt="Project image"
         className="h-full w-full object-cover"
       />

@@ -102,3 +102,38 @@ export const timeline = [
     icon: "IoSchoolSharp",
   },
 ];
+
+export const skills = [
+  {
+    logo: "https://picsum.photos/1080/720",
+    percentage: 80,
+  },
+  {
+    logo: "https://picsum.photos/1080/720",
+    percentage: 80,
+  },
+  {
+    logo: "https://picsum.photos/1080/720",
+    percentage: 80,
+  },
+  {
+    logo: "https://picsum.photos/1080/720",
+    percentage: 80,
+  },
+  {
+    logo: "https://picsum.photos/1080/720",
+    percentage: 80,
+  },
+  {
+    logo: "https://picsum.photos/1080/720",
+    percentage: 80,
+  },
+  {
+    logo: "https://picsum.photos/1080/720",
+    percentage: 80,
+  },
+  {
+    logo: "https://picsum.photos/1080/720",
+    percentage: 80,
+  },
+];

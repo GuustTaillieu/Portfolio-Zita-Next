@@ -77,14 +77,14 @@ export default function Project({ project }: Props) {
             variants={variants}
             initial="initial"
             animate="animate"
-            className="absolute bottom-4 left-0 right-0 flex h-8 flex-row-reverse justify-center gap-4 overflow-x-auto md:left-auto md:right-4 md:h-16 md:justify-end"
+            className="absolute bottom-4 left-0 right-0 flex h-8 flex-row-reverse justify-center gap-4 max-md:overflow-x-scroll md:left-auto md:right-4 md:h-16 md:justify-end"
           >
             {projects
               .filter((p) => p.id !== project.id)
               .reverse()
               .map((project, i) => (
                 <motion.div
-                  className="aspect-[4/2] rounded-sm md:overflow-auto"
+                  className="aspect-[4/2] rounded-sm"
                   layoutId={project.title}
                   key={project.id}
                   variants={variants}

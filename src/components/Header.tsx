@@ -16,9 +16,10 @@ const email = "zita@gmail.com";
 type Props = {
   background?: boolean;
   invert?: boolean;
+  className?: React.HTMLAttributes<HTMLDivElement>["className"];
 };
 
-const Header = ({ background, invert }: Props) => {
+const Header = ({ background, invert, className = "" }: Props) => {
   const router = useRouter();
 
   return (
@@ -26,7 +27,8 @@ const Header = ({ background, invert }: Props) => {
       layoutId="navigation"
       className={
         `fixed top-0 z-50 mx-auto grid w-full grid-cols-2 items-center px-4 text-center text-lg text-dark sm:text-lg md:grid-cols-3 header:px-20` +
-        (background ? " bg-light shadow-md" : "")
+        (background ? " bg-light shadow-md" : "") +
+        className
       }
       style={invert ? { filter: "invert(1)" } : {}}
     >

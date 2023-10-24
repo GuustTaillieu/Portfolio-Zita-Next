@@ -32,17 +32,17 @@ const sections: SectionType[] = [
 
 export default function Home() {
   const container = React.useRef(null);
-  const { query } = useRouter();
+  const { asPath } = useRouter();
 
   React.useEffect(() => {
-    const section = query.section as string;
+    const section = asPath.split("#")[1];
     if (section) {
       const el = document.getElementById(section.toId());
       if (el) {
         el.scrollIntoView({ behavior: "smooth" });
       }
     }
-  }, [query]);
+  }, [asPath]);
 
   const { scrollYProgress } = useScroll({
     container,
@@ -52,7 +52,7 @@ export default function Home() {
   const yPos = useTransform(scrollYProgress, [0, 1], ["105%", "-105%"]);
 
   return (
-    <Page>
+    <Page className="sticky max-lg:bg-light max-lg:shadow-md">
       <div
         ref={container}
         className="pageContainer snap-y snap-mandatory py-24"
@@ -69,7 +69,7 @@ export default function Home() {
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0, transition: { duration: 0.1 } }}
           exit={{ opacity: 0, x: -100, transition: { duration: 0.2 } }}
-          className="fixed left-16 top-2/3 hidden h-[3.75rem] overflow-hidden md:block lg:h-24 xl:left-32 2xl:left-60"
+          className="big:left-96 fixed left-16 top-2/3 h-[3.75rem] overflow-hidden max-lg:hidden lg:h-24 xl:left-32 2xl:left-60"
         >
           <motion.div className="flex flex-col" style={{ translateY: yPos }}>
             {sections?.map((section) => (

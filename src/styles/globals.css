@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  @apply scrollbar-thin scrollbar-thumb-primary scrollbar-track-primaryDark/10;
+}
+
 @font-face {
   font-family: "Antonia";
   src:
@@ -37,5 +41,6 @@
 }
 
 .vertical-timeline::before {
+  /* color: #42bdb9; */
   @apply rounded-t-sm;
 }

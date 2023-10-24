@@ -125,7 +125,7 @@ function Contact({}: Props) {
             />
             <button
               type="submit"
-              className="bg-primary/20 hover:bg-primaryDark/30 rounded-md px-10 py-5 font-secondary text-lg font-bold text-light transition-colors"
+              className="bg-primary/40 hover:bg-primaryDark/40 rounded-md px-10 py-5 font-secondary text-lg font-bold text-light transition-colors"
             >
               Submit
             </button>
@@ -141,7 +141,7 @@ function Contact({}: Props) {
           </form>
           <BackButton
             className="bg-primaryDark text-dark"
-            callback={() => router.push("/?section=contact")}
+            callback={() => router.push("/", "/#contact")}
           />
         </div>
       </div>

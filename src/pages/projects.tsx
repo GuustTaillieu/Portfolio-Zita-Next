@@ -72,7 +72,7 @@ const Projects = ({}: Props) => {
         </motion.div>
 
         <h2 className="sectionTitle z-50 mb-10 md:mb-4">Projects</h2>
-        <h3 className="mb-8 hidden font-secondary text-2xl uppercase tracking-[10px] opacity-40 md:flex">
+        <h3 className="text-primary mb-8 hidden font-secondary text-2xl uppercase tracking-[10px] opacity-40 md:flex">
           Drag to scroll
         </h3>
 
@@ -98,7 +98,7 @@ const Projects = ({}: Props) => {
       </div>
       <BackButton
         className="bg-primaryDark text-dark"
-        callback={() => router.push("/?section=projects")}
+        callback={() => router.push("/", "/#projects")}
       />
     </Page>
   );

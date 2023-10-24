@@ -59,7 +59,7 @@ export default function Project({ project }: Props) {
               initial={{ opacity: 0, y: 100 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="w-4/5 text-center font-secondary text-4xl uppercase tracking-[10px] text-light md:w-fit"
+              className="w-4/5 text-center font-default text-4xl uppercase tracking-[10px] text-light md:w-fit"
             >
               {project?.title}
             </motion.h1>
@@ -67,7 +67,7 @@ export default function Project({ project }: Props) {
               initial={{ opacity: 0, y: 100 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="w-4/5 text-center font-secondary text-xl uppercase tracking-[10px] text-light md:w-fit"
+              className="text-primary w-4/5 text-center font-sans text-xl uppercase tracking-[10px] md:w-fit"
             >
               {project?.description}
             </motion.p>

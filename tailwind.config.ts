@@ -12,7 +12,7 @@ const config: Config = {
       colors: {
         dark: "#181818",
         light: "#eeeeee",
-        primary: "#88e6e8",
+        primary: "#42bdb9",
         primaryDark: "#2b7a78",
       },
       fontFamily: {
@@ -27,9 +27,10 @@ const config: Config = {
       },
       screens: {
         header: "802px",
+        big: "2000px",
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")],
 };
 export default config;

@@ -18,7 +18,7 @@ function AboutMe({}: Props) {
           <motion.div
             layoutId="About me"
             className="relative flex aspect-[3/4] h-screen cursor-pointer items-center justify-center bg-dark"
-            onClick={() => router.push(ROUTES.HOME + "?section=about")}
+            onClick={() => router.push(ROUTES.HOME, "/#about")}
           >
             <Image
               src={imgSrc}

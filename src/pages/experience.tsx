@@ -21,6 +21,9 @@ const dark = (((config.theme?.extend?.colors as any)?.dark as string) ??
 const light = (((config.theme?.extend?.colors as any)?.light as string) ??
   "#fff") as string;
 
+const primaryDark = (((config.theme?.extend?.colors as any)
+  ?.primaryDark as string) ?? dark) as string;
+
 type Props = {};
 
 function Experience({}: Props) {
@@ -74,7 +77,7 @@ function Experience({}: Props) {
                         icon={<GrabIcon nameIcon={item.icon} />}
                         iconStyle={{
                           background: light,
-                          color: dark,
+                          color: primaryDark,
                           fontSize: "1.5rem",
                         }}
                         intersectionObserverProps={{
@@ -84,14 +87,20 @@ function Experience({}: Props) {
                         <h3 className="font-secondary text-2xl font-bold">
                           {item.role}
                         </h3>
-                        <p className="!-mt-1 font-secondary text-xl uppercase italic">
+                        <p className="text-primaryDark !-mt-1 font-secondary text-xl uppercase italic">
                           {item.company}
                         </p>
                         <p className="!mt-4 flex items-center gap-2 font-secondary">
-                          <FaMapPin /> {item.location}
+                          <span className="text-primaryDark">
+                            <FaMapPin />
+                          </span>{" "}
+                          {item.location}
                         </p>
                         <p className="!mt-1 flex items-center gap-2 font-secondary">
-                          <FaCalendarAlt /> {item.date.start}
+                          <span className="text-primaryDark">
+                            <FaCalendarAlt />
+                          </span>{" "}
+                          {item.date.start}
                           <span className="font-default"> - </span>
                           {item.date.end}
                         </p>
@@ -105,7 +114,7 @@ function Experience({}: Props) {
 
         <BackButton
           className="bg-primaryDark text-dark"
-          callback={() => router.push("/?section=experience")}
+          callback={() => router.push("/", "/#experience")}
         />
       </div>
     </Page>

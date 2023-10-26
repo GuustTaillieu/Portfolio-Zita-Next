@@ -1,4 +1,29 @@
 import bg_image from "@public/images/backgroundImage.webp";
+import { SectionType } from "../types";
+import ROUTES from "./routes";
+
+export const sections: SectionType[] = [
+  {
+    title: "About me",
+    link_url: ROUTES.ABOUT,
+  },
+  {
+    title: "Experience",
+    link_url: ROUTES.EXPERIENCE,
+  },
+  {
+    title: "Skills",
+    link_url: ROUTES.SKILLS,
+  },
+  {
+    title: "Projects",
+    link_url: ROUTES.PROJECTS,
+  },
+  {
+    title: "Contact",
+    link_url: ROUTES.CONTACT,
+  },
+];
 
 export const projects = [
   {

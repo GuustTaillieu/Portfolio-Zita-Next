@@ -3,32 +3,10 @@ import Page from "./Page";
 import HomeSection from "@/components/HomeSection";
 import { useScroll, useTransform, motion } from "framer-motion";
 import HomeTitle from "@/components/HomeTitle";
-import { SectionType } from "../../types";
-import ROUTES from "@/routes";
 import { useRouter } from "next/router";
-
-const sections: SectionType[] = [
-  {
-    title: "About me",
-    link_url: ROUTES.ABOUT,
-  },
-  {
-    title: "Experience",
-    link_url: ROUTES.EXPERIENCE,
-  },
-  {
-    title: "Skills",
-    link_url: ROUTES.SKILLS,
-  },
-  {
-    title: "Projects",
-    link_url: ROUTES.PROJECTS,
-  },
-  {
-    title: "Contact",
-    link_url: ROUTES.CONTACT,
-  },
-];
+import { sections } from "@/data";
+import HomeTitles from "@/components/HomeTitles";
+import HomeSections from "@/components/HomeSections";
 
 export default function Home() {
   const container = React.useRef(null);
@@ -57,25 +35,21 @@ export default function Home() {
         ref={container}
         className="pageContainer snap-y snap-mandatory py-24"
       >
-        {sections?.map((section) => (
-          <HomeSection
-            key={section.title}
-            container={container}
-            section={section}
-          />
-        ))}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+          <HomeTitles yPos={yPos} />
+        </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: -100 }}
-          animate={{ opacity: 1, x: 0, transition: { duration: 0.1 } }}
-          exit={{ opacity: 0, x: -100, transition: { duration: 0.2 } }}
-          className="big:left-96 fixed left-16 top-2/3 h-[3.75rem] overflow-hidden max-lg:hidden lg:h-24 xl:left-32 2xl:left-60"
+          initial={asPath.includes("#") ? {} : { x: "-20%", opacity: 0 }}
+          animate={{ x: "0%", opacity: 1 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          <motion.div className="flex flex-col" style={{ translateY: yPos }}>
-            {sections?.map((section) => (
-              <HomeTitle key={section.title} section={section} />
-            ))}
-          </motion.div>
+          <HomeSections container={container} />
         </motion.div>
       </div>
     </Page>

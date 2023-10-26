@@ -66,14 +66,14 @@ function Contact({}: Props) {
           <h4 className="mb-8 text-center text-4xl font-semibold tracking-[0.2rem]">
             I'm the asset you're looking for.
             <br />
-            <span className="border-b-2 border-light/50 leading-[3.25rem]">
+            <span className="border-primary/50 border-b-2 leading-[3.25rem]">
               Let's talk.
             </span>
           </h4>
 
           <div className="flex flex-col items-center space-y-6">
             <div className="flex items-center space-x-5">
-              <FaPhone className="aspect-square w-7 animate-pulse justify-center text-light" />
+              <FaPhone className="text-primary aspect-square w-7 animate-pulse justify-center" />
               <p className="text-2xl">{info?.phoneNumber}</p>
             </div>
 
@@ -81,12 +81,12 @@ function Contact({}: Props) {
               href={`mailto:${info?.email}`}
               className="flex items-center space-x-5"
             >
-              <FaEnvelope className="aspect-square w-7 animate-pulse justify-center text-light" />
+              <FaEnvelope className="text-primary aspect-square w-7 animate-pulse justify-center" />
               <p className="text-2xl">{info?.email}</p>
             </Link>
 
             <div className="flex items-center space-x-5">
-              <FaMapPin className="aspect-square w-7 animate-pulse justify-center text-light" />
+              <FaMapPin className="text-primary aspect-square w-7 animate-pulse justify-center" />
               <p className="text-2xl">{info?.address}</p>
             </div>
           </div>
@@ -125,7 +125,7 @@ function Contact({}: Props) {
             />
             <button
               type="submit"
-              className="rounded-md bg-light/20 px-10 py-5 font-secondary text-lg font-bold text-light transition-colors hover:bg-light/30"
+              className="bg-primary/40 hover:bg-primaryDark/40 rounded-md px-10 py-5 font-secondary text-lg font-bold text-light transition-colors"
             >
               Submit
             </button>
@@ -140,8 +140,8 @@ function Contact({}: Props) {
             )}
           </form>
           <BackButton
-            className="bg-light text-dark"
-            callback={() => router.push("/?section=contact")}
+            className="bg-primaryDark text-dark"
+            callback={() => router.push("/", "/#contact")}
           />
         </div>
       </div>

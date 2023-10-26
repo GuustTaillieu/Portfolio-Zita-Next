@@ -25,7 +25,7 @@ function HomeSection({ container, section }: Props) {
     <section
       key={section.title}
       id={section.title.toId()}
-      className="relative flex h-[70vh] snap-center items-center justify-center md:justify-end md:pr-16 lg:h-[80vh] xl:pr-32 2xl:pr-60"
+      className="big:pr-96 relative flex h-[70vh] snap-center items-center justify-center md:pr-16 lg:h-[80vh] lg:justify-end xl:pr-32 2xl:pr-60"
     >
       <motion.div
         layoutId={section.title}
@@ -37,10 +37,10 @@ function HomeSection({ container, section }: Props) {
         <Image
           src={imgSrc}
           alt="Picture of the author"
-          className="h-full w-full object-contain blur-sm md:blur-none"
+          className="h-full w-full object-contain blur-sm lg:blur-none"
         />
-        <div className="absolute inset-0 bg-dark opacity-30 md:hidden"></div>
-        <h2 className="absolute left-1/2 top-1/2 flex -translate-x-1/2 text-3xl text-light md:hidden">
+        <div className="absolute inset-0 bg-dark opacity-30 lg:hidden"></div>
+        <h2 className="absolute left-1/2 top-1/2 flex -translate-x-1/2 text-3xl text-light lg:hidden">
           {section.title}
         </h2>
       </motion.div>

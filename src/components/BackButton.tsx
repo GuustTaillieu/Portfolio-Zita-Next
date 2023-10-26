@@ -22,8 +22,9 @@ const BackButton = ({ callback, className }: Props) => {
         onClick={() => (callback ? callback() : router.back())}
         className={
           className
-            ? className + " p-2 opacity-40 transition-opacity hover:opacity-100"
-            : "bg-dark p-2 text-light opacity-40 transition-opacity hover:opacity-100"
+            ? className +
+              " hover:bg-primary p-2 opacity-40 transition-all hover:opacity-100"
+            : "bg-dark p-2 text-dark opacity-40 transition-opacity hover:opacity-100"
         }
       >
         <TbArrowBackUp className="h-6 w-6" />

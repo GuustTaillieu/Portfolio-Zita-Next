@@ -1,3 +1,4 @@
+import React, { useRef } from "react";
 import CustomCursor from "@/components/CustomCursor";
 import Header from "@/components/Header";
 import Head from "next/head";
@@ -15,6 +16,8 @@ export default function Page({
   headerInverted,
   className,
 }: Props) {
+  const stickyElement = useRef(null);
+
   return (
     <>
       <Head>
@@ -22,12 +25,13 @@ export default function Page({
         <meta name="description" content="Zita Worm" />
       </Head>
       <Header
+        ref={stickyElement}
         background={headerBg}
         invert={headerInverted}
         className={className}
       />
       <main className="relative">{children}</main>
-      <CustomCursor />
+      <CustomCursor stickyElement={stickyElement} />
     </>
   );
 }

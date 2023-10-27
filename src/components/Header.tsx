@@ -5,6 +5,7 @@ import { SocialIcon } from "react-social-icons";
 import config from "../../tailwind.config";
 import ROUTES from "@/routes";
 import { useRouter } from "next/router";
+import Magnetic from "./Magnetic";
 
 const socials = [
     "https://github.com/GuustTaillieu/",
@@ -59,23 +60,25 @@ const Header = forwardRef(
                         ))}
                     </motion.div>
                 </div>
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{
-                        duration: 1.2,
-                        delay: 0.8,
-                        ease: "anticipate",
-                    }}
-                    className="flex justify-start md:justify-center"
-                >
-                    <h1
-                        ref={ref}
-                        className="relative p-4 font-secondary font-semibold uppercase before:absolute before:inset-0 before:hover:scale-x-[1.5] before:hover:scale-y-[2] sm:text-nav"
+                <Magnetic>
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{
+                            duration: 1.2,
+                            delay: 0.8,
+                            ease: "anticipate",
+                        }}
+                        className="flex justify-start md:justify-center"
                     >
-                        <Link href={ROUTES.HOME}>Zita Worm</Link>
-                    </h1>
-                </motion.div>
+                        <h1
+                            ref={ref}
+                            className="relative p-4 font-secondary font-semibold uppercase before:absolute before:inset-0 before:hover:scale-x-[1.5] before:hover:scale-y-[2] sm:text-nav"
+                        >
+                            <Link href={ROUTES.HOME}>Zita Worm</Link>
+                        </h1>
+                    </motion.div>
+                </Magnetic>
                 <motion.div
                     initial={{ opacity: 0, x: 400 }}
                     animate={{ opacity: 1, x: 0 }}

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 const CURSOR_SPEED = 0.8;
+const STICKY_DISTANCE = 0.2;
 
 type Props = {
     stickyElement: React.RefObject<any>;
@@ -32,9 +33,14 @@ const CustomCursor = ({ stickyElement }: Props) => {
         const { top, left, width, height } =
             stickyElement.current.getBoundingClientRect();
         const center = { x: left + width / 2, y: top + height / 2 };
+        const distance = { x: clientX - center.x, y: clientY - center.y };
         if (isHovering) {
-            mouse.x.set(center.x - CURSOR_SIZE / 2);
-            mouse.y.set(center.y - CURSOR_SIZE / 2);
+            mouse.x.set(
+                center.x - CURSOR_SIZE / 2 + distance.x * STICKY_DISTANCE,
+            );
+            mouse.y.set(
+                center.y - CURSOR_SIZE / 2 + distance.y * STICKY_DISTANCE,
+            );
         } else {
             mouse.x.set(clientX - CURSOR_SIZE / 2);
             mouse.y.set(clientY - CURSOR_SIZE / 2);

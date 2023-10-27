@@ -1,10 +1,7 @@
 import React from "react";
 import Page from "./Page";
-import HomeSection from "@/components/HomeSection";
 import { useScroll, useTransform, motion } from "framer-motion";
-import HomeTitle from "@/components/HomeTitle";
 import { useRouter } from "next/router";
-import { sections } from "@/data";
 import HomeTitles from "@/components/HomeTitles";
 import HomeSections from "@/components/HomeSections";
 

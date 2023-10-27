@@ -1,3 +1,4 @@
+import CustomCursor from "@/components/CustomCursor";
 import Header from "@/components/Header";
 import Head from "next/head";
 
@@ -26,6 +27,7 @@ export default function Page({
         className={className}
       />
       <main className="relative">{children}</main>
+      <CustomCursor />
     </>
   );
 }

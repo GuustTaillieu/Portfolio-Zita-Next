@@ -71,7 +71,7 @@ const Header = forwardRef(
                 >
                     <h1
                         ref={ref}
-                        className="p-4 font-secondary font-semibold uppercase sm:text-nav"
+                        className="relative p-4 font-secondary font-semibold uppercase before:absolute before:inset-0 before:hover:scale-x-[1.5] before:hover:scale-y-[2] sm:text-nav"
                     >
                         <Link href={ROUTES.HOME}>Zita Worm</Link>
                     </h1>

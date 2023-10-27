@@ -29,8 +29,16 @@ const CustomCursor = ({ stickyElement }: Props) => {
 
     const handleMouseMove = (e: MouseEvent) => {
         const { clientX, clientY } = e;
-        mouse.x.set(clientX - CURSOR_SIZE / 2);
-        mouse.y.set(clientY - CURSOR_SIZE / 2);
+        const { top, left, width, height } =
+            stickyElement.current.getBoundingClientRect();
+        const center = { x: left + width / 2, y: top + height / 2 };
+        if (isHovering) {
+            mouse.x.set(center.x - CURSOR_SIZE / 2);
+            mouse.y.set(center.y - CURSOR_SIZE / 2);
+        } else {
+            mouse.x.set(clientX - CURSOR_SIZE / 2);
+            mouse.y.set(clientY - CURSOR_SIZE / 2);
+        }
     };
 
     const handleMouseOver = () => {

@@ -3,44 +3,48 @@
 @tailwind utilities;
 
 * {
-  @apply scrollbar-thin scrollbar-track-primaryDark/10 scrollbar-thumb-primary;
+    @apply scrollbar-thin scrollbar-track-primaryDark/10 scrollbar-thumb-primary;
 }
 
 @font-face {
-  font-family: "Antonia";
-  src:
-    url("./fonts/Antonia-Light.ttf") format("truetype"),
-    url("./fonts/Antonia-Light.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
+    font-family: "Antonia";
+    src:
+        url("./fonts/Antonia-Light.ttf") format("truetype"),
+        url("./fonts/Antonia-Light.woff") format("woff");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-  font-family: "Clarika";
-  src:
-    url("./fonts/Clarika-regular.otf") format("opentype"),
-    url("./fonts/Clarika-regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+    font-family: "Clarika";
+    src:
+        url("./fonts/Clarika-regular.otf") format("opentype"),
+        url("./fonts/Clarika-regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
 @layer components {
-  .pageContainer {
-    @apply h-screen overflow-x-hidden overflow-y-scroll bg-light font-default text-dark;
-  }
+    .pageContainer {
+        @apply h-screen overflow-x-hidden overflow-y-scroll bg-light font-default text-dark;
+    }
 
-  .sectionTitle {
-    @apply text-5xl font-bold tracking-[0.2rem];
-  }
+    .sectionTitle {
+        @apply text-5xl font-bold tracking-[0.2rem];
+    }
 
-  .contactInput {
-    @apply rounded-sm border-b border-[#242424] bg-slate-400/10 px-6 py-4 font-sans text-gray-500 outline-none transition-all hover:border-primaryDark/40 hover:text-primaryDark/40 focus:border-primaryDark/40 focus:text-primaryDark/40;
-  }
+    .contactInput {
+        @apply rounded-sm border-b border-[#242424] bg-slate-400/10 px-6 py-4 font-sans text-gray-500 outline-none transition-all hover:border-primaryDark/40 hover:text-primaryDark/40 focus:border-primaryDark/40 focus:text-primaryDark/40;
+    }
+
+    [data-sticky] {
+        @apply before:absolute before:inset-0 before:hover:scale-x-[1.5] before:hover:scale-y-[2];
+    }
 }
 
 .vertical-timeline::before {
-  /* color: #42bdb9; */
-  @apply rounded-t-sm;
+    /* color: #42bdb9; */
+    @apply rounded-t-sm;
 }

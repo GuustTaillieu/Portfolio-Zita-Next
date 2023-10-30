@@ -3,9 +3,10 @@ import { motion } from "framer-motion";
 
 type Props = {
     children: React.ReactNode;
+    strength?: number;
 };
 
-const Magnetic = ({ children }: Props) => {
+const Magnetic = ({ children, strength = 0.05 }: Props) => {
     const ref = useRef<HTMLDivElement>(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -17,7 +18,7 @@ const Magnetic = ({ children }: Props) => {
             x: clientX - (left + width / 2),
             y: clientY - (top + height / 2),
         };
-        setPosition({ x: center.x * 0.05, y: center.y * 0.05 });
+        setPosition({ x: center.x * strength, y: center.y * strength });
     };
 
     const handleMouseLeave: React.MouseEventHandler<HTMLDivElement> = () => {

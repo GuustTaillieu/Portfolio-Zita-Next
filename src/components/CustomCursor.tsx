@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
     animate,
     motion,
@@ -7,19 +7,18 @@ import {
     useMotionValue,
     useSpring,
 } from "framer-motion";
+import useCursor from "@/hooks/useCursor";
 
 const CURSOR_SPEED = 0.8;
 const STICKY_DISTANCE = 0.2;
-const MAX_STRETCH_FACTOR = 1.3;
+const MAX_STRETCH_FACTOR = 1.1;
 
-type Props = {
-    stickyElement: React.RefObject<any>;
-};
+type Props = {};
 
-const CustomCursor = ({ stickyElement }: Props) => {
+const CustomCursor = ({}: Props) => {
+    const { stickyElements } = useCursor();
     const cursorRef = React.useRef<HTMLDivElement>(null);
-    const [isHovering, setIsHovering] = useState(false);
-    const CURSOR_SIZE = isHovering ? 60 : 20;
+    const [cursorSize, setCursorSize] = useState(20);
 
     const mouse = {
         x: useMotionValue(0),
@@ -47,21 +46,22 @@ const CustomCursor = ({ stickyElement }: Props) => {
 
     const handleMouseMove = (e: MouseEvent) => {
         const { clientX, clientY } = e;
-        const { top, left, width, height } =
-            stickyElement.current.getBoundingClientRect();
-        const center = { x: left + width / 2, y: top + height / 2 };
-        const distance = { x: clientX - center.x, y: clientY - center.y };
 
-        if (isHovering) {
+        const elementHovering = stickyElements.current?.find((el) =>
+            el.classList.contains("stick"),
+        );
+        if (elementHovering) {
+            const { top, left, width, height } =
+                elementHovering.getBoundingClientRect();
+            const center = { x: left + width / 2, y: top + height / 2 };
+            const distance = { x: clientX - center.x, y: clientY - center.y };
+            const size = parseInt(elementHovering.dataset.sticky!) || 60;
+
             // ROTATION
             rotate(distance);
 
-            mouse.x.set(
-                center.x - CURSOR_SIZE / 2 + distance.x * STICKY_DISTANCE,
-            );
-            mouse.y.set(
-                center.y - CURSOR_SIZE / 2 + distance.y * STICKY_DISTANCE,
-            );
+            mouse.x.set(center.x - size / 2 + distance.x * STICKY_DISTANCE);
+            mouse.y.set(center.y - size / 2 + distance.y * STICKY_DISTANCE);
             // STRETCH
             const absoluteDistance = Math.max(
                 Math.abs(distance.x),
@@ -80,17 +80,21 @@ const CustomCursor = ({ stickyElement }: Props) => {
             scale.x.set(nexScaleX);
             scale.y.set(nexScaleY);
         } else {
-            mouse.x.set(clientX - CURSOR_SIZE / 2);
-            mouse.y.set(clientY - CURSOR_SIZE / 2);
+            mouse.x.set(clientX - cursorSize / 2);
+            mouse.y.set(clientY - cursorSize / 2);
         }
     };
 
-    const handleMouseOver = () => {
-        setIsHovering(true);
+    const handleMouseOver = (e: MouseEvent, element: HTMLElement) => {
+        element.classList.add("stick");
+        element.dataset.sticky
+            ? setCursorSize(+element.dataset.sticky)
+            : setCursorSize(60);
     };
 
-    const handleMouseLeave = () => {
-        setIsHovering(false);
+    const handleMouseLeave = (e: MouseEvent, element: HTMLElement) => {
+        element.classList.remove("stick");
+        setCursorSize(20);
         animate(
             cursorRef.current!,
             { scaleX: 1, scaleY: 1 },
@@ -100,20 +104,22 @@ const CustomCursor = ({ stickyElement }: Props) => {
 
     useEffect(() => {
         window.addEventListener("mousemove", handleMouseMove);
-        stickyElement.current.addEventListener("mouseover", handleMouseOver);
-        stickyElement.current.addEventListener("mouseleave", handleMouseLeave);
+        stickyElements.current?.forEach((el) => {
+            el.addEventListener("mouseover", (e) => handleMouseOver(e, el));
+            el.addEventListener("mouseleave", (e) => handleMouseLeave(e, el));
+        });
         return () => {
             window.removeEventListener("mousemove", handleMouseMove);
-            stickyElement.current.removeEventListener(
-                "mouseover",
-                handleMouseOver,
-            );
-            stickyElement.current.removeEventListener(
-                "mouseleave",
-                handleMouseLeave,
-            );
+            stickyElements.current?.forEach((el) => {
+                el.removeEventListener("mouseover", (e) =>
+                    handleMouseOver(e, el),
+                );
+                el.removeEventListener("mouseleave", (e) =>
+                    handleMouseLeave(e, el),
+                );
+            });
         };
-    });
+    }, [stickyElements]);
 
     type templateProps = {
         rotate: string;
@@ -126,16 +132,16 @@ const CustomCursor = ({ stickyElement }: Props) => {
     return (
         <motion.div
             transformTemplate={template}
-            className="fixed aspect-square rounded-full bg-black"
+            className="pointer-events-none fixed aspect-square rounded-full bg-black"
             ref={cursorRef}
             style={{
-                width: CURSOR_SIZE,
+                width: cursorSize,
                 left: smoothMouse.x,
                 top: smoothMouse.y,
                 scaleX: scale.x,
                 scaleY: scale.y,
             }}
-            animate={{ width: CURSOR_SIZE }}
+            animate={{ width: cursorSize }}
         />
     );
 };

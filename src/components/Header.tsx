@@ -6,6 +6,7 @@ import ROUTES from "@/routes";
 import { useRouter } from "next/router";
 import Magnetic from "./Magnetic";
 import useCursor from "@/hooks/useCursor";
+import StickyElement from "./StickyElement";
 
 const socials = [
     "https://github.com/GuustTaillieu/",
@@ -47,16 +48,16 @@ const Header = ({ background, invert, className = "" }: Props) => {
                 >
                     {socials?.map((social) => (
                         <Magnetic key={social} strength={0.2}>
-                            <SocialIcon
-                                ref={(el) => addStickyElement(el)}
-                                data-sticky="40"
-                                url={social}
-                                key={social}
-                                target="_blank"
-                                fgColor="white"
-                                bgColor="transparent"
-                                className="cursor-pointer"
-                            />
+                            <StickyElement>
+                                <SocialIcon
+                                    url={social}
+                                    key={social}
+                                    target="_blank"
+                                    fgColor="white"
+                                    bgColor="transparent"
+                                    className="cursor-pointer"
+                                />
+                            </StickyElement>
                         </Magnetic>
                     ))}
                 </motion.div>
@@ -71,13 +72,11 @@ const Header = ({ background, invert, className = "" }: Props) => {
                 }}
                 className="flex justify-start md:justify-center"
             >
-                <h1
-                    ref={(el) => addStickyElement(el)}
-                    data-sticky="60"
-                    className="relative p-4 font-secondary font-semibold uppercase sm:text-nav"
-                >
-                    <Link href={ROUTES.HOME}>Zita Worm</Link>
-                </h1>
+                <StickyElement>
+                    <h1 className="relative p-4 font-secondary font-semibold uppercase sm:text-nav">
+                        <Link href={ROUTES.HOME}>Zita Worm</Link>
+                    </h1>
+                </StickyElement>
             </motion.div>
             <motion.div
                 className="flex justify-end"
@@ -89,24 +88,24 @@ const Header = ({ background, invert, className = "" }: Props) => {
                     ease: "anticipate",
                 }}
             >
-                <h2
-                    ref={(el) => addStickyElement(el)}
-                    data-sticky="60"
-                    className="flex w-fit flex-row items-center justify-end font-secondary font-semibold uppercase sm:text-nav"
-                    onClick={() => router.push(ROUTES.CONTACT)}
-                >
-                    <SocialIcon
-                        url={"mailto:" + email}
-                        onClick={(e) => e.preventDefault()}
-                        target="_blank"
-                        fgColor="white"
-                        bgColor="transparent"
-                        className="!hidden cursor-pointer p-2 sm:!inline-block"
-                    />
-                    <span className="cursor-pointer p-4 pl-0">
-                        Get in touch
-                    </span>
-                </h2>
+                <StickyElement>
+                    <h2
+                        className="flex w-fit flex-row items-center justify-end font-secondary font-semibold uppercase sm:text-nav"
+                        onClick={() => router.push(ROUTES.CONTACT)}
+                    >
+                        <SocialIcon
+                            url={"mailto:" + email}
+                            onClick={(e) => e.preventDefault()}
+                            target="_blank"
+                            fgColor="white"
+                            bgColor="transparent"
+                            className="!hidden cursor-pointer p-2 sm:!inline-block"
+                        />
+                        <span className="cursor-pointer p-4 pl-0">
+                            Get in touch
+                        </span>
+                    </h2>
+                </StickyElement>
             </motion.div>
         </motion.header>
     );

@@ -40,7 +40,7 @@
     }
 
     [data-sticky] {
-        @apply before:absolute before:inset-0 before:hover:scale-x-[1.5] before:hover:scale-y-[2];
+        @apply relative before:absolute before:inset-0 before:hover:scale-x-[1.5] before:hover:scale-y-[2];
     }
 }
 

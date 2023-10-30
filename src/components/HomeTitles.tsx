@@ -2,7 +2,6 @@ import React from "react";
 import { MotionValue, motion } from "framer-motion";
 import { sections } from "@/data";
 import HomeTitle from "./HomeTitle";
-import useCursor from "@/hooks/useCursor";
 
 type Props = {
     yPos: MotionValue<string>;
@@ -10,8 +9,6 @@ type Props = {
 };
 
 function HomeTitles({ yPos, className = "" }: Props) {
-    const { addStickyElement } = useCursor();
-
     return (
         <motion.div
             initial={{ opacity: 0, x: -100 }}

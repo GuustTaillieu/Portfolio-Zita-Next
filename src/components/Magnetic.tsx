@@ -28,6 +28,7 @@ const Magnetic = ({ children, strength = 0.05 }: Props) => {
     const { x, y } = position;
     return (
         <motion.div
+            data-sticky="60"
             className="relative"
             ref={ref}
             onMouseMove={handleMouseMove}

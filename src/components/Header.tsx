@@ -4,7 +4,6 @@ import Link from "next/link";
 import { SocialIcon } from "react-social-icons";
 import ROUTES from "@/routes";
 import { useRouter } from "next/router";
-import Magnetic from "./Magnetic";
 import useCursor from "@/hooks/useCursor";
 import StickyElement from "./StickyElement";
 
@@ -23,7 +22,6 @@ type Props = {
 
 const Header = ({ background, invert, className = "" }: Props) => {
     const router = useRouter();
-    const { addStickyElement } = useCursor();
 
     return (
         <motion.header
@@ -47,18 +45,20 @@ const Header = ({ background, invert, className = "" }: Props) => {
                     className="flex flex-row gap-2"
                 >
                     {socials?.map((social) => (
-                        <Magnetic key={social} strength={0.2}>
-                            <StickyElement>
-                                <SocialIcon
-                                    url={social}
-                                    key={social}
-                                    target="_blank"
-                                    fgColor="white"
-                                    bgColor="transparent"
-                                    className="cursor-pointer"
-                                />
-                            </StickyElement>
-                        </Magnetic>
+                        <StickyElement
+                            key={social}
+                            magnetic={{ strength: 0.2 }}
+                            cursorSize={50}
+                        >
+                            <SocialIcon
+                                url={social}
+                                key={social}
+                                target="_blank"
+                                fgColor="white"
+                                bgColor="transparent"
+                                className="cursor-pointer"
+                            />
+                        </StickyElement>
                     ))}
                 </motion.div>
             </div>

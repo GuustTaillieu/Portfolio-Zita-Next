@@ -1,6 +1,8 @@
 import React from "react";
 
 const Context = React.createContext({
+    cursorText: "" as string | null,
+    setCursorText: (text: string | null) => {},
     addStickyElement: (ref: HTMLElement | null) => {},
     stickyElements: React.createRef<HTMLElement[]>(),
 });
@@ -10,6 +12,7 @@ type Props = {
 };
 
 export const CursorContext = ({ children }: Props) => {
+    const [cursorText, setCursorText] = React.useState<string | null>(null);
     const stickyElements = React.useRef<HTMLElement[]>([]);
 
     const addStickyElement = (ref: HTMLElement | null) => {
@@ -19,8 +22,13 @@ export const CursorContext = ({ children }: Props) => {
     };
 
     const contextProps = React.useMemo(
-        () => ({ addStickyElement, stickyElements }),
-        [stickyElements],
+        () => ({
+            cursorText,
+            setCursorText,
+            stickyElements,
+            addStickyElement,
+        }),
+        [stickyElements, cursorText],
     );
 
     return <Context.Provider value={contextProps}>{children}</Context.Provider>;

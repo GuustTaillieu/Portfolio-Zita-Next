@@ -28,7 +28,7 @@ function HomeSection({ container, section }: Props) {
             id={section.title.toId()}
             className="relative flex h-[70vh] snap-center items-center justify-center md:pr-16 lg:h-[80vh] lg:justify-end xl:pr-32 2xl:pr-60 big:pr-96"
         >
-            <TextCursorElement text="Click to see more">
+            <TextCursorElement text="Click me!">
                 <motion.div
                     layoutId={section.title}
                     ref={target}

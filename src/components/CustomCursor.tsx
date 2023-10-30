@@ -1,11 +1,10 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     animate,
     motion,
     transform,
     useMotionValue,
-    useMotionValueEvent,
     useSpring,
 } from "framer-motion";
 import useCursor from "@/hooks/useCursor";
@@ -146,7 +145,7 @@ const CustomCursor = ({}: Props) => {
             {cursorText ? (
                 <motion.div
                     transformTemplate={textTemplate}
-                    className="pointer-events-none fixed flex aspect-square !-translate-x-1/2 !-translate-y-1/2 items-center justify-center overflow-hidden rounded-full bg-dark text-white mix-blend-difference transition-transform"
+                    className="pointer-events-none fixed flex aspect-square !-translate-x-1/2 !-translate-y-1/2 items-center justify-center overflow-hidden rounded-full bg-white text-dark mix-blend-difference transition"
                     ref={cursorRef}
                     style={{
                         width: cursorSize,
@@ -158,7 +157,7 @@ const CustomCursor = ({}: Props) => {
                     animate={{ width: 100 }}
                 >
                     <motion.span
-                        className="text-center"
+                        className="text-center text-xl font-bold uppercase"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -167,13 +166,28 @@ const CustomCursor = ({}: Props) => {
                             ease: "easeInOut",
                         }}
                     >
-                        {cursorText}
+                        {cursorText.split("").map((letter, index) => (
+                            <motion.span
+                                key={index}
+                                className="inline-block"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{
+                                    duration: 0.5,
+                                    ease: "easeInOut",
+                                    delay: index * 0.05,
+                                }}
+                            >
+                                {letter === " " ? "\u00A0" : letter}
+                            </motion.span>
+                        ))}
                     </motion.span>
                 </motion.div>
             ) : (
                 <motion.div
                     transformTemplate={template}
-                    className="pointer-events-none fixed aspect-square rounded-full bg-dark transition-transform"
+                    className="pointer-events-none fixed aspect-square rounded-full bg-white mix-blend-difference transition"
                     ref={cursorRef}
                     style={{
                         width: cursorSize,

@@ -4,7 +4,7 @@ import imgSrc from "@public/vercel.svg";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { SectionType } from "../../types";
 import { useRouter } from "next/router";
-import TextCursorElement from "./TextCursorElement";
+import TextCursorElement from "./CustomCursor/TextCursorElement";
 
 type Props = {
     container: React.MutableRefObject<null>;

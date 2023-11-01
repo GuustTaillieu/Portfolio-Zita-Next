@@ -1,6 +1,6 @@
 import useCursor from "@/hooks/useCursor";
 import React from "react";
-import Magnetic from "./Magnetic";
+import Magnetic from "./CustomCursor/Magnetic";
 
 type Props = {
     children: React.ReactNode;

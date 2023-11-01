@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
     animate,
     motion,
@@ -8,18 +8,21 @@ import {
     useSpring,
 } from "framer-motion";
 import useCursor from "@/hooks/useCursor";
-
-const DEFAULT_CURSOR_SIZE = 10;
-const CURSOR_SPEED = 0.8;
-const STICKY_DISTANCE = 0.2;
-const MAX_STRETCH_FACTOR = 1.1;
-
+import {
+    CURSOR_SPEED,
+    DEFAULT_CURSOR_SIZE,
+    MAX_STRETCH_FACTOR,
+    STICKY_DISTANCE,
+    cursorMode,
+    cursorSize,
+    cursorText,
+} from "./states";
+import { computed } from "@preact/signals-react";
 type Props = {};
 
 const CustomCursor = ({}: Props) => {
-    const { stickyElements, cursorText } = useCursor();
+    const { stickyElements } = useCursor();
     const cursorRef = React.useRef<HTMLDivElement>(null);
-    const [cursorSize, setCursorSize] = useState(DEFAULT_CURSOR_SIZE);
 
     const mouse = {
         x: useMotionValue(0),
@@ -81,21 +84,22 @@ const CustomCursor = ({}: Props) => {
             scale.x.set(nexScaleX);
             scale.y.set(nexScaleY);
         } else {
-            mouse.x.set(clientX - cursorSize / 2);
-            mouse.y.set(clientY - cursorSize / 2);
+            mouse.x.set(clientX - cursorSize.value / 2);
+            mouse.y.set(clientY - cursorSize.value / 2);
         }
     };
 
     const handleMouseOver = (e: MouseEvent, element: HTMLElement) => {
         element.classList.add("stick");
-        element.dataset.sticky
-            ? setCursorSize(+element.dataset.sticky)
-            : setCursorSize(60);
+        const stickySize = element.dataset.sticky
+            ? +element.dataset.sticky
+            : 60;
+        cursorSize.value = stickySize;
     };
 
     const handleMouseLeave = (e: MouseEvent, element: HTMLElement) => {
         element.classList.remove("stick");
-        setCursorSize(DEFAULT_CURSOR_SIZE);
+        cursorSize.value = DEFAULT_CURSOR_SIZE;
         animate(
             cursorRef.current!,
             { scaleX: 1, scaleY: 1 },
@@ -131,6 +135,17 @@ const CustomCursor = ({}: Props) => {
         };
     }, [stickyElements]);
 
+    const mode = computed(() => {
+        switch (cursorMode.value) {
+            case "default":
+                return " mix-blend-difference";
+            case "solid":
+                return " mix-blend-normal";
+            case "opaque":
+                return " mix-blend-exclusion";
+        }
+    });
+
     type templateProps = {
         rotate: string;
         scaleX: number;
@@ -142,13 +157,16 @@ const CustomCursor = ({}: Props) => {
 
     return (
         <>
-            {cursorText ? (
+            {cursorText.value ? (
                 <motion.div
                     transformTemplate={textTemplate}
-                    className="pointer-events-none fixed flex aspect-square !-translate-x-1/2 !-translate-y-1/2 items-center justify-center overflow-hidden rounded-full bg-white text-dark mix-blend-difference transition"
+                    className={
+                        "pointer-events-none fixed flex aspect-square !-translate-x-1/2 !-translate-y-1/2 items-center justify-center overflow-hidden rounded-full bg-white text-dark transition" +
+                        mode.value
+                    }
                     ref={cursorRef}
                     style={{
-                        width: cursorSize,
+                        width: cursorSize.value,
                         left: smoothMouse.x,
                         top: smoothMouse.y,
                         scaleX: scale.x,
@@ -166,7 +184,7 @@ const CustomCursor = ({}: Props) => {
                             ease: "easeInOut",
                         }}
                     >
-                        {cursorText.split("").map((letter, index) => (
+                        {cursorText.value.split("").map((letter, index) => (
                             <motion.span
                                 key={index}
                                 className="inline-block"
@@ -187,16 +205,19 @@ const CustomCursor = ({}: Props) => {
             ) : (
                 <motion.div
                     transformTemplate={template}
-                    className="pointer-events-none fixed aspect-square rounded-full bg-white mix-blend-difference transition"
+                    className={
+                        "pointer-events-none fixed aspect-square rounded-full bg-white transition" +
+                        mode.value
+                    }
                     ref={cursorRef}
                     style={{
-                        width: cursorSize,
+                        width: cursorSize.value,
                         left: smoothMouse.x,
                         top: smoothMouse.y,
                         scaleX: scale.x,
                         scaleY: scale.y,
                     }}
-                    animate={{ width: cursorSize }}
+                    animate={{ width: cursorSize.value }}
                 />
             )}
         </>

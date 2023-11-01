@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import ROUTES from "@/routes";
 import { projectImageVariant } from "@/pages/projects";
 import { useRouter } from "next/router";
-import TextCursorElement from "./TextCursorElement";
+import TextCursorElement from "./CustomCursor/TextCursorElement";
 
 type Props = {
     project: {
@@ -20,7 +20,7 @@ const TrackImage = ({ project }: Props) => {
     const [clicking, setClicking] = React.useState<boolean>(false);
 
     return (
-        <TextCursorElement text="Discover">
+        <TextCursorElement text="Discover" mode="solid">
             <motion.div
                 key={project.id}
                 className="z-50 aspect-[5/3] w-full overflow-hidden rounded-md bg-gray-400 shadow-lg md:aspect-[3/4] md:h-full"

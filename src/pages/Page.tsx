@@ -1,5 +1,5 @@
 import React from "react";
-import CustomCursor from "@/components/CustomCursor";
+import CustomCursor from "@/components/CustomCursor/CustomCursor";
 import Header from "@/components/Header";
 import Head from "next/head";
 import { CursorContext } from "@/hooks/useCursor";

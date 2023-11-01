@@ -2,8 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 import { SectionType } from "../../types";
-import useCursor from "@/hooks/useCursor";
-import TextCursorElement from "./TextCursorElement";
+import TextCursorElement from "./CustomCursor/TextCursorElement";
 
 type Props = {
     section: SectionType;

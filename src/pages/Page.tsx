@@ -28,8 +28,8 @@ export default function Page({
                 invert={headerInverted}
                 className={className}
             />
-            <main className="relative">{children}</main>
-            <CustomCursor />
+            <main className="relative z-0">{children}</main>
+            <CustomCursor key={children?.toString()} />
         </CursorContext>
     );
 }

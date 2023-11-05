@@ -4,8 +4,8 @@ import imgSrc from "@public/vercel.svg";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import ROUTES from "@/routes";
-import { useRouter } from "next/router";
 import TextCursorElement from "@/components/CustomCursor/TextCursorElement";
+import { useRouter } from "next/router";
 
 type Props = {};
 

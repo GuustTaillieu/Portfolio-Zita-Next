@@ -84,6 +84,7 @@ const CustomCursor = ({}: Props) => {
             scale.x.set(nexScaleX);
             scale.y.set(nexScaleY);
         } else {
+            cursorSize.value = DEFAULT_CURSOR_SIZE;
             mouse.x.set(clientX - cursorSize.value / 2);
             mouse.y.set(clientY - cursorSize.value / 2);
         }
@@ -107,14 +108,6 @@ const CustomCursor = ({}: Props) => {
         );
     };
 
-    const handleMouseOutScreen = () => {
-        animate(
-            cursorRef.current!,
-            { scaleX: 0, scaleY: 0 },
-            { duration: 0.3 },
-        );
-    };
-
     useEffect(() => {
         window.addEventListener("mousemove", handleMouseMove);
         stickyElements.current?.forEach((el) => {
@@ -123,7 +116,6 @@ const CustomCursor = ({}: Props) => {
         });
         return () => {
             window.removeEventListener("mousemove", handleMouseMove);
-            window.removeEventListener("mouseleave", handleMouseOutScreen);
             stickyElements.current?.forEach((el) => {
                 el.removeEventListener("mouseover", (e) =>
                     handleMouseOver(e, el),

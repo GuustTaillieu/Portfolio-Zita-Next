@@ -3,9 +3,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { SocialIcon } from "react-social-icons";
 import ROUTES from "@/routes";
-import { useRouter } from "next/router";
-import useCursor from "@/hooks/useCursor";
 import StickyElement from "./StickyElement";
+import { useRouter } from "next/router";
 
 const socials = [
     "https://github.com/GuustTaillieu/",

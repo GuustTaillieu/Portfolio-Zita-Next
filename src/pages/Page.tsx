@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import CustomCursor from "@/components/CustomCursor/CustomCursor";
 import Header from "@/components/Header";
 import Head from "next/head";
@@ -29,7 +30,7 @@ export default function Page({
                 className={className}
             />
             <main className="relative z-0">{children}</main>
-            <CustomCursor key={children?.toString()} />
+            <CustomCursor />
         </CursorContext>
     );
 }

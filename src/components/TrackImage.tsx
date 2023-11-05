@@ -1,35 +1,35 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
 import ROUTES from "@/routes";
 import { projectImageVariant } from "@/pages/projects";
-import { useRouter } from "next/router";
 import TextCursorElement from "./CustomCursor/TextCursorElement";
+import { cursorMode, cursorText } from "./CustomCursor/states";
+import { useRouter } from "next/router";
 
 type Props = {
     project: {
         id: string;
         title: string;
         description: string;
-        image: string;
+        image: StaticImageData;
     };
 };
 
 const TrackImage = ({ project }: Props) => {
     const router = useRouter();
-    const [clicking, setClicking] = React.useState<boolean>(false);
 
     return (
         <TextCursorElement text="Discover" mode="solid">
             <motion.div
                 key={project.id}
-                className="z-50 aspect-[5/3] w-full overflow-hidden rounded-md bg-gray-400 shadow-lg md:aspect-[3/4] md:h-full"
+                className="z-50 aspect-[5/3] snap-center rounded-md bg-gray-400 shadow-lg md:aspect-[3/4] md:h-full"
                 layoutId={project.title}
-                onMouseDown={() => setClicking(true)}
-                onMouseMove={() => setClicking(false)}
-                onMouseUp={() =>
-                    clicking && router.push(ROUTES.PROJECT(project.id))
-                }
+                onClick={() => {
+                    cursorText.value = "";
+                    cursorMode.value = "default";
+                    router.push(ROUTES.PROJECT(project.id));
+                }}
                 variants={projectImageVariant}
                 transition={{ duration: 0.5 }}
             >

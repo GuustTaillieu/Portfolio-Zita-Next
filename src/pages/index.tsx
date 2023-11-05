@@ -33,24 +33,8 @@ export default function Home() {
                 ref={container}
                 className="pageContainer snap-y snap-mandatory py-24"
             >
-                <motion.div
-                    initial={
-                        asPath.includes("#") ? {} : { x: "-20%", opacity: 0 }
-                    }
-                    animate={{ x: "0%", opacity: 1 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                >
-                    <HomeSections container={container} />
-                </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                >
-                    <HomeTitles yPos={yPos} />
-                </motion.div>
+                <HomeSections container={container} />
+                <HomeTitles yPos={yPos} />
             </div>
         </Page>
     );
